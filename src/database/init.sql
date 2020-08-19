@@ -6,8 +6,10 @@ CREATE TABLE users
 (
     id SERIAL PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
-    location VARCHAR(255)
+    location VARCHAR(255),
+    password VARCHAR(255)
 );
+/*  PasswordHash BINARY(64) NOT NULL,*/
 
 CREATE TABLE posts
 (
