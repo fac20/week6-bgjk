@@ -18,11 +18,11 @@ CREATE TABLE posts
     text_content TEXT NOT NULL
 );
 
-INSERT INTO users (username, location) VALUES
-    ('Zi_You_in_Hell', 'In Hell'),
-    ('jhart5', 'A dark basement'),
-    ('Ephivecent', 'Nowhere'),
-    ('Khadija', 'The Matrix')
+INSERT INTO users (username, location, password) VALUES
+    ('Zi_You_in_Hell', 'In Hell', 'Password1'),
+    ('jhart5', 'A dark basement', 'Password2'),
+    ('Ephivecent', 'Nowhere', 'Bugsandbounties3'),
+    ('Khadija', 'The Matrix', 'Cupcak3s')
 ;
 
 
