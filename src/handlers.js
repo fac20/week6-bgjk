@@ -5,8 +5,8 @@ const template = require("./template");
 
 // -------Home Handler------------------
 function home(request, response) {
-  model.getUsers().then(users => {
-    const html = template.compileHome(users);
+  model.getPosts().then(posts => {
+    const html = template.compileHome(posts);
     response.writeHead(200, { "content-type": "text/html" });
     response.end(html);
   });

@@ -4,9 +4,32 @@ function getUsers() {
   return db.query("SELECT * FROM users").then(result => result.rows);
 }
 // get posts from posts table
+// function getPosts() {
+//   return db.query("SELECT * FROM posts").then(result => result.rows);
+// }
+
+// Create a function to get data from two different tables(users.username, users.location, posts.text_content)
+
+
+/*SELECT users.username, users.location, posts.textContent 
+FROM users INNER JOIN posts
+ON users.id = posts.user_id */
+
 function getPosts() {
-  return db.query("SELECT * FROM posts").then(result => result.rows);
+  return db.query(`
+    SELECT users.username, users.location, posts.textContent 
+    FROM users INNER JOIN posts
+    ON users.id = posts.user_id`)
+    .then()
 }
+
+
+
+
+
+
+
+
 // Insert new user into user array
 function createUser(data) {
   // User information taken from form placed in variable
