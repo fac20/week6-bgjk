@@ -1,0 +1,31 @@
+{
+  "name": "week5-bgjk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "pg": "^8.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2",
+    "tap-spec": "^5.0.0",
+    "tape": "^5.0.1"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test tape 'src/tests/*' | tap-spec",
+    "start": "node src/server.js",
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fac20/Week5-BGJK.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fac20/Week5-BGJK/issues"
+  },
+  "homepage": "https://github.com/fac20/Week5-BGJK#readme"
+}

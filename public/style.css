@@ -1,0 +1,77 @@
+:root {
+  --background: hsl(180 25% 25%);
+  --beans: hsl(12, 73%, 32%);
+  --font-color: hsl(30, 100%, 77%);
+}
+body,
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--background);
+  color: var(--font-color);
+  margin: 1em;
+  width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vw;
+  margin: 1em;
+  border: solid var(--font-color) 3px;
+}
+input,
+button {
+  border-radius: 7em;
+  border: solid var(--font-color) 3px;
+  background: var(--background);
+  margin: 1em;
+  word-wrap: break-word;
+  overflow: none;
+  color: var(--font-color);
+}
+
+.post {
+  margin: 2rem 2rem;
+  width: 70vw;
+  border-radius: 3rem;
+  cursor: pointer;
+  transition: 0.9s;
+  padding: 2rem;
+  box-shadow: 0px 0px 2px 2px hsla(30, 100%, 77%, 0.568);
+  height: 10vh;
+}
+
+.post:hover {
+  box-shadow: 0px 0px 8px 7px hsla(30, 100%, 77%, 0.445), -5px -5px 30px 7px hsla(30, 100%, 77%, 0.493);
+
+}
+
+button {
+  color: var(--font-color);
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+@media all and (min-width: 420px) {
+  form {
+    width: 60vw;
+    margin: 1em;
+    border: none;
+  }
+  input,
+  button {
+    width: 30vw;
+    height: 7vh;
+  }
+
+  .post {
+    width: 50vw;
+  }
+}
