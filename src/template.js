@@ -1,8 +1,3 @@
-const model = require("./model");
-const handlers = require("./handlers");
-// function createArticle(something) {
-//     return `template ${something } literal`
-// }
 
 function compileSkeleton(content) {
   return `
