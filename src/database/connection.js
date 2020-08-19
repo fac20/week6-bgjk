@@ -12,8 +12,10 @@ const options = {
 };
 
 if (process.env.NODE_ENV === "test") {
-  connectionString = process.env.TEST_DATABASE_URL;
+  options.connectionString = process.env.TEST_DATABASE_URL;
 }
+
+
 
 // creat pool of connections to database
 const db = new pg.Pool(options);
