@@ -4,6 +4,8 @@ const dotenv = require("dotenv");
 // get variables from .env file
 dotenv.config();
 
+console.log(dotenv.config());
+
 //change the active database depending on if we are testing or not
 
 const options = {

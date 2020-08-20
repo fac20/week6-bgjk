@@ -17,10 +17,10 @@ ON users.id = posts.user_id */
 
 function getPosts() {
   return db.query(`
-    SELECT users.username, users.location, posts.textContent 
+    SELECT users.username, users.location, posts.text_content 
     FROM users INNER JOIN posts
     ON users.id = posts.user_id`)
-    .then()
+    .then(result => result.rows);
 }
 
 
