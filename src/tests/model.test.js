@@ -43,7 +43,7 @@ test("Can get posts from database", t => {
       .then(posts => {
         const firstPost = posts[0];
         t.equal(firstPost.text_content, "Testing; one, two.");
-        t.equal(firstPost.user_id, 2);
+        t.equal(firstPost.username, "jhart5");
         t.end();
       })
       .catch(error => {
@@ -63,8 +63,8 @@ test("Can add posts to database", t => {
     .then(getPosts)
     .then(posts => {
       const latestPost = posts[posts.length - 1];
-      t.equal(posts.user_id, 5);
-      t.equal(posts.text_content, "Blaze it everyday!");
+      t.equal(latestPost.username, 5);
+      t.equal(latestPost.text_content, "Blaze it everyday!");
       t.end();
     })
     .catch(error => {

@@ -2,11 +2,13 @@ const fs = require("fs");
 const path = require("path");
 const model = require("./model");
 const template = require("./template");
+const { parse } = require("cookie");
+const { sign, verify } = require("jsonwebtoken");
 
 // -------Home Handler------------------
 function home(request, response) {
-  model.getUsers().then(users => {
-    const html = template.compileHome(users);
+  model.getPosts().then(posts => {
+    const html = template.compileHome(posts);
     response.writeHead(200, { "content-type": "text/html" });
     response.end(html);
   });
@@ -17,6 +19,54 @@ function missing(request, response) {
   response.writeHead(200, { "content-type": "text/html" });
   response.end(`<h1>Oops, nothing for you over here</h1>`);
 }
+// --------Create Post Handler---------------
+
+function createPost(request, response) {
+
+
+  let body = "";
+  request.on("data", chunk => (body += chunk));
+  request.on("end", () => {
+    const searchParams = new URLSearchParams(body);
+    const data = Object.fromEntries(searchParams);
+
+    // check if the user has any existing cookies
+    if (!request.headers.cookie) return sendRedirect();
+    // create an object with a 'jwt' property  and parse the users cookies into it
+    // parse into it the cookies and assign the cookie with the name jwt to the property 'jwt' in the newobject
+    // if the jwt cookie name doesnt exist then object would look like this :
+    // {jwt: undefined}
+    const { jwt } = parse(request.headers.cookie);
+    // if jwt is a falsy then redirect
+    if (!jwt) return sendRedirect();
+
+    return verify(jwt, SECRET, (err, jwt) => {
+      if (err) { return sendRedirect(); }
+      else {
+        let values = [jwt.userID, data.post];
+        model
+          .createPost(values) //save post info to posts table in database
+          .then(() => {
+            response.writeHead(302, { location: "/" });
+            response.end();
+          })
+          .catch(error => {
+            console.error(error);
+            response.writeHead(500, { "content-type": "text/html" });
+            response.end("<h1>No connection no beans</h1>");
+          });
+      }
+      //console.log("data = ", data);
+    });
+
+    // response.writeHead(404, { "content-type": "text/html" });
+    // response.end("<h1>Oops, nothing for you over here</h1>");
+  });
+}
+
+
+
+
 
 // --------Create User Handler---------------
 function createUser(request, response) {
@@ -72,6 +122,7 @@ function public(request, response) {
     }
   });
 }
+
 /* --------Login handler---------------- 
 function login (request, response){
   - we need to select the data received 
@@ -91,4 +142,6 @@ function login (request, response){
 
 }
 */
-module.exports = { home, missing, createUser, public };
+
+module.exports = { home, missing, createUser, public, createPost };
+
