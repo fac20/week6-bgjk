@@ -22,8 +22,6 @@ function missing(request, response) {
 // --------Create Post Handler---------------
 
 function createPost(request, response) {
-
-
   let body = "";
   request.on("data", chunk => (body += chunk));
   request.on("end", () => {
@@ -41,8 +39,9 @@ function createPost(request, response) {
     if (!jwt) return sendRedirect();
 
     return verify(jwt, SECRET, (err, jwt) => {
-      if (err) { return sendRedirect(); }
-      else {
+      if (err) {
+        return sendRedirect();
+      } else {
         let values = [jwt.userID, data.post];
         model
           .createPost(values) //save post info to posts table in database
@@ -64,21 +63,23 @@ function createPost(request, response) {
   });
 }
 
-
-
-
-
 // --------Create User Handler---------------
 function createUser(request, response) {
   let body = "";
   request.on("data", chunk => (body += chunk));
   request.on("end", () => {
     const searchParams = new URLSearchParams(body);
-    // console.log(searchParams);
-    const data = Object.fromEntries(searchParams);
-    //console.log("data = ", data);
-    model
-      .createUser(data)
+    const user = Object.fromEntries(searchParams);
+    //console.log(user);
+    const password = user.password;
+    //console.log(password);
+    bcrypt
+      .genSalt(10)
+      .then(salt => bcrypt.hash(user.password, salt))
+      .then(hash => {
+        user.password = hash;
+        model.createUser(user);
+      })
       .then(() => {
         response.writeHead(302, { location: "/" });
         response.end();
@@ -144,4 +145,3 @@ function login (request, response){
 */
 
 module.exports = { home, missing, createUser, public, createPost };
-
