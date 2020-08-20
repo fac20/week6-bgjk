@@ -25,14 +25,14 @@ function compileSkeleton(form, posts) {
     `;
 }
 
-function compileUsers(postsArray) {
+function compilePosts(postsArray) {
   return postsArray
-    .map(user => {
+    .map(post => {
       //Needs to be updated with new post content when db.connections found in model.js is finished
       return `
           <article class="post">
-              <p>Written by: ${user.id}</p>
-              <p>Inhabitant of: ${user.location}</p>
+              <p>Written by: ${post.username}</p>
+              <p>${post.text_content}</p>
           </article>
   `;
     })
@@ -63,7 +63,7 @@ function compileHome(content) {
   let loggedIn = false;
   // select the login form if user is not logged in or the form to post content if they're not
   let form = loggedIn ? postForm : loginForm;
-  return compileSkeleton(form, compileUsers(content));
+  return compileSkeleton(form, compilePosts(content));
 }
 
 module.exports = { compileHome };

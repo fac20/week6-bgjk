@@ -5,7 +5,7 @@ const template = require("./template");
 const bcrypt = require("bcryptjs");
 const { parse } = require("cookie");
 const { sign, verify } = require("jsonwebtoken");
-
+const bcrypt = require("bcrypt");
 // -------Home Handler------------------
 function home(request, response) {
   model.getPosts().then(posts => {
@@ -15,6 +15,22 @@ function home(request, response) {
   });
 }
 
+//---------Display Sign Up Page----------
+function displaySignup(request, response) {
+  const filePath = path.join(__dirname, "..", "public", "signup.html");
+
+  fs.readFile(filePath, (error, file) => {
+    if (error) {
+      console.log(error);
+      missing();
+    } else {
+      response.writeHead(200, { "content-type": "text/html" });
+      response.end(file);
+    }
+  });
+  // response.writeHead(200, { "content-type": "text/html" });
+  //     response.end("../public/signup.html");
+}
 // --------Missing handler---------------
 function missing(request, response) {
   response.writeHead(200, { "content-type": "text/html" });
@@ -114,11 +130,17 @@ function createUser(request, response) {
   request.on("data", chunk => (body += chunk));
   request.on("end", () => {
     const searchParams = new URLSearchParams(body);
-    // console.log(searchParams);
-    const data = Object.fromEntries(searchParams);
-    //console.log("data = ", data);
-    model
-      .createUser(data)
+    const user = Object.fromEntries(searchParams);
+    //console.log(user);
+    const password = user.password;
+    //console.log(password);
+    bcrypt
+      .genSalt(10)
+      .then(salt => bcrypt.hash(user.password, salt))
+      .then(hash => {
+        user.password = hash;
+        model.createUser(user);
+      })
       .then(() => {
         response.writeHead(302, { location: "/" });
         response.end();
@@ -163,4 +185,12 @@ function public(request, response) {
   });
 }
 
-module.exports = { home, missing, createUser, public, createPost };
+module.exports = {
+  home,
+  missing,
+  createUser,
+  public,
+  createPost,
+  displaySignup,
+  login,
+};
