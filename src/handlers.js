@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const model = require("./model");
 const template = require("./template");
+const bcrypt = require("bcryptjs");
 const { parse } = require("cookie");
 const { sign, verify } = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -35,6 +36,50 @@ function missing(request, response) {
   response.writeHead(200, { "content-type": "text/html" });
   response.end(`<h1>Oops, nothing for you over here</h1>`);
 }
+
+/* --------Login handler---------------- */
+function login(request, response) {
+  let token;
+  let body = "";
+  request.on("data", chunk => (body += chunk));
+  request
+    .on("end", () => {
+      // take the users inputs and place them into a new object called data
+      const searchParams = new URLSearchParams(body);
+      const data = Object.fromEntries(searchParams);
+      // get user's hashed password and salt form password column of database
+      model
+        .getUser(data.username) //get user info from database
+        .then(user => {
+          // create json web token (jwt) from user data and secret key
+          const userDetails = { userId: user.id };
+          token = sign(userDetails, SECRET);
+          // compare new password with old via bcrypt.compare
+          return bcrypt.compare(data.password, user.password);
+        })
+        // return the writeHead with a cookie attached to show they're logged in.
+        .then(result => {
+          response.writeHead(302, {
+            location: "/",
+            "set-cookie": `jwt=${token}`,
+          });
+          response.end();
+        })
+        .catch(response => {
+          response.writeHead(401, {
+            "content-type": "text/html",
+          });
+          response.end(`<h1>Incorrect password or username</h1>`);
+        });
+    })
+    .catch(response => {
+      response.writeHead(400, {
+        "content-type": "text/html",
+      });
+      response.end(`<h1>Failed to send</h1>`);
+    });
+}
+
 // --------Create Post Handler---------------
 
 function createPost(request, response) {
@@ -58,7 +103,7 @@ function createPost(request, response) {
       if (err) {
         return sendRedirect();
       } else {
-        let values = [jwt.userID, data.post];
+        let values = [jwt.userId, data.post];
         model
           .createPost(values) //save post info to posts table in database
           .then(() => {
@@ -140,26 +185,6 @@ function public(request, response) {
   });
 }
 
-/* --------Login handler---------------- 
-function login (request, response){
-  - we need to select the data received 
-  from the login form and break it down to take the username and password. 
-  --------------------------------------
-  let body = "";
-  request.on("data", chunk => (body += chunk));
-  request.on("end", () => {
-    const searchParams = new URLSearchParams(body);
-  --------------------------------------
-  - we then need to compare the username and password submitted to the 
-  matching username and password. 
-  .getUser(data).then().catch()
-
-  - we then need to return the writeHead with a cookie attached to show they're logged in. 
-  we need  way to select the logged in value to use in our template. 
-
-}
-*/
-
 module.exports = {
   home,
   missing,
@@ -167,4 +192,5 @@ module.exports = {
   public,
   createPost,
   displaySignup,
+  login,
 };

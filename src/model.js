@@ -2,7 +2,7 @@ const db = require("./database/connection");
 
 // query to obtain a single user who's username and hashed password matches that from the form input.
 
-function matchUser(input) {
+function getUser(input) {
   //input will be object with 2 properties: username and object
 
   // input = { username: jhart5, password: Password2 }
@@ -65,4 +65,4 @@ function createPost(values) {
 //     postValues
 //   );
 // }
-module.exports = { getUsers, createUser, createPost, getPosts, matchUser };
+module.exports = { getUsers, createUser, createPost, getPosts, getUser };
