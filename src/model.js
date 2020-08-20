@@ -36,11 +36,11 @@ function getPosts() {
 // Insert new user into user array
 function createUser(data) {
   // User information taken from form placed in variable
-  const userValues = [data.username, data.location];
+  const userValues = [data.username, data.location, data.password];
   //  Place the new user data into the table with a db.query
   return db
     .query(
-      "INSERT INTO users(username, location) VALUES($1, $2) RETURNING id",
+      "INSERT INTO users(username, location, password) VALUES($1, $2, $3) RETURNING id",
       userValues
     )
     .then(result => result.rows);
