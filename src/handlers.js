@@ -4,7 +4,7 @@ const model = require("./model");
 const template = require("./template");
 const { parse } = require("cookie");
 const { sign, verify } = require("jsonwebtoken");
-
+const bcrypt = require("bcrypt");
 // -------Home Handler------------------
 function home(request, response) {
   model.getPosts().then(posts => {
@@ -14,6 +14,22 @@ function home(request, response) {
   });
 }
 
+//---------Display Sign Up Page----------
+function displaySignup(request, response) {
+  const filePath = path.join(__dirname, "..", "public", "signup.html");
+
+  fs.readFile(filePath, (error, file) => {
+    if (error) {
+      console.log(error);
+      missing();
+    } else {
+      response.writeHead(200, { "content-type": "text/html" });
+      response.end(file);
+    }
+  });
+  // response.writeHead(200, { "content-type": "text/html" });
+  //     response.end("../public/signup.html");
+}
 // --------Missing handler---------------
 function missing(request, response) {
   response.writeHead(200, { "content-type": "text/html" });
@@ -144,4 +160,11 @@ function login (request, response){
 }
 */
 
-module.exports = { home, missing, createUser, public, createPost };
+module.exports = {
+  home,
+  missing,
+  createUser,
+  public,
+  createPost,
+  displaySignup,
+};

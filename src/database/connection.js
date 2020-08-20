@@ -8,7 +8,7 @@ dotenv.config();
 
 const options = {
   connectionString: process.env.DATABASE_URL,
-  //ssl: { rejectUnauthorized: false },
+  ssl: { rejectUnauthorized: false },
 };
 
 if (process.env.NODE_ENV === "test") {
