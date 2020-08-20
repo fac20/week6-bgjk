@@ -1,21 +1,35 @@
 const db = require("./database/connection");
 
+// query to obtain a single user who's username and hashed password matches that from the form input.
 
+function matchUser(input) {
+  //input will be object with 2 properties: username and object
 
+  // input = { username: jhart5, password: Password2 }
+  // returned value:
+  // { id: 2, username: jhart5, location: A dark basement, password: Password2}
 
-
+  return db
+    .query(
+      `SELECT * FROM users 
+    WHERE username = ${input.username}`
+    )
+    .then(result => result.rows);
+}
 
 // A query to select all users from the users column
 function getUsers() {
   return db.query("SELECT * FROM users").then(result => result.rows);
 }
 
-
 function getPosts() {
-  return db.query(`
+  return db
+    .query(
+      `
     SELECT users.username, users.location, posts.text_content 
     FROM users INNER JOIN posts
-    ON users.id = posts.user_id`)
+    ON users.id = posts.user_id`
+    )
     .then(result => result.rows);
 }
 
@@ -35,10 +49,10 @@ function createUser(data) {
 // Insert new post into posts table
 function createPost(values) {
   return db.query(
-    "INSERT INTO posts(user_id, text_content) VALUES($1, $2)", values
+    "INSERT INTO posts(user_id, text_content) VALUES($1, $2)",
+    values
   );
 }
-
 
 //   const postValues = [
 //     //db.query(`SELECT id FROM users WHERE username = ${data.username}`),
@@ -51,4 +65,4 @@ function createPost(values) {
 //     postValues
 //   );
 // }
-module.exports = { getUsers, createUser, createPost, getPosts };
+module.exports = { getUsers, createUser, createPost, getPosts, matchUser };
