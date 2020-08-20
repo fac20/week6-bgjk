@@ -1,5 +1,4 @@
-
-function compileSkeleton(content) {
+function compileSkeleton(form, posts) {
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -15,17 +14,8 @@ function compileSkeleton(content) {
     <body>
         <h1 class="heading-logo">Spill Your Beans</h1>
         <main>
-            <form 
-            method ='POST' action ='/submit'>
-                <label for="username">Name :</label>
-                <input type="text" id="username" name="username" required>
-                <label for="location">Location :</label>
-                <input type="text" id="location" name="location" required>
-                <label for="post">Post :</label>
-                <input type="text" id="post" name="post" required>
-                <button type='submit'>SUBMIT</button>
-            </form> 
-          ${content}
+          ${form}
+          ${posts}
 
         </main>
         <script src="public/main.js"></script>
@@ -35,9 +25,10 @@ function compileSkeleton(content) {
     `;
 }
 
-function compileUsers(usersArray) {
-  return usersArray
+function compileUsers(postsArray) {
+  return postsArray
     .map(user => {
+      //Needs to be updated with new post content when db.connections found in model.js is finished
       return `
           <article class="post">
               <p>Written by: ${user.id}</p>
@@ -48,8 +39,31 @@ function compileUsers(usersArray) {
     .join("");
 }
 
-function compileHome(something) {
-  return compileSkeleton(compileUsers(something));
+loginForm = `
+<form 
+method ='POST' action ='/login'>
+    <label for="username">Username :</label>
+    <input type="text" id="username" name="username" required>
+    <label for="password">Password :</label>
+    <input type="password" id="password" name="password" required>
+    <button type='submit'>Login</button>
+</form>
+`;
+postForm = `
+<form 
+method ='POST' action ='/submit'>
+    <label for="post">Post :</label>
+    <input type="text" id="post" name="post" required>
+    <button type='submit'>SUBMIT</button>
+</form>
+`;
+
+// default value to be changed later
+let loggedIn = false;
+function compileHome(content) {
+  // select the login form if user is not logged in or the form to post content if they're not
+  let form = loggedIn ? postForm : loginForm;
+  return compileSkeleton(form, compileUsers(content));
 }
 
 module.exports = { compileHome };
