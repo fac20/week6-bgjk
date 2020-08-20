@@ -40,6 +40,25 @@ function missing(request, response) {
   response.end(`<h1>Oops, nothing for you over here</h1>`);
 }
 
+// ----Authenticate user------------
+// function authUser(request, response) {
+//   let logged_in;
+//   if (!request.headers.cookie) {
+//     return missing();
+//   }
+//   const { jwt } = parse(request.headers.cookie);
+//   // if jwt is a falsy then redirect
+//   if (!jwt) return missing();
+
+//   return verify(jwt, process.env.SECRET, (err, jwt) => {
+//     if (err) {
+//       return (logged_in = false);
+//     } else {
+//       return (logged_in = true);
+//     }
+//   });
+// }
+
 /* --------Login handler---------------- */
 function login(request, response) {
   let token;
