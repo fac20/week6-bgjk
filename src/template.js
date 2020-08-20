@@ -58,9 +58,9 @@ method ='POST' action ='/submit'>
 </form>
 `;
 
-// default value to be changed later
-let loggedIn = false;
 function compileHome(content) {
+  // default value to be changed later must check cookie.
+  let loggedIn = false;
   // select the login form if user is not logged in or the form to post content if they're not
   let form = loggedIn ? postForm : loginForm;
   return compileSkeleton(form, compileUsers(content));
