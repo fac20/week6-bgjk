@@ -54,19 +54,23 @@ function login(request, response) {
       .getUser(data.username) //get user info from database
       .then(user => {
         // create json web token (jwt) from user data and secret key
-        const userDetails = { userId: user.id };
+        const userDetails = { userId: user[0].id };
+        console.log(userDetails);
         token = sign(userDetails, process.env.SECRET);
         // compare new password with old via bcrypt.compare
-        return bcrypt.compare(data.password, user.password);
+        return bcrypt.compare(data.password, user[0].password);
       })
       // return the writeHead with a cookie attached to show they're logged in.
       .then(result => {
+        if (!result) throw new Error("password mismatch!");
+
         response.writeHead(302, {
           location: "/",
           "set-cookie": `jwt=${token}`,
         });
         response.end();
       })
+
       .catch(error => {
         response.writeHead(401, {
           "content-type": "text/html",

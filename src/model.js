@@ -3,20 +3,13 @@ const db = require("./database/connection");
 // query to obtain a single user who's username and hashed password matches that from the form input.
 
 function getUser(input) {
-  //input will be object with 2 properties: username and object
-
-  // input = { username: jhart5, password: Password2 }
-  // returned value:
-  // { id: 2, username: jhart5, location: A dark basement, password: Password2}
-
   return db
     .query(
       `SELECT * FROM users 
-    WHERE username = ${input.username}`
+    WHERE username = '${input}'`
     )
     .then(result => result.rows);
 }
-
 // A query to select all users from the users column
 function getUsers() {
   return db.query("SELECT * FROM users").then(result => result.rows);
