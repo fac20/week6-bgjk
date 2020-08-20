@@ -6,6 +6,10 @@ function router(request, response) {
     handlers.home(request, response);
   } else if (url === "/submit" && method === "POST") {
     handlers.createUser(request, response);
+  } else if (url === "/login" && method === "POST") {
+    handlers.login(request, response);
+  } else if (url === "/submit" && method === "POST") {
+    handlers.createPost(request, response);
   } else if (url.includes("/public")) {
     handlers.public(request, response);
   } else {
