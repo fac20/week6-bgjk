@@ -30,8 +30,14 @@ function createPost(request, response) {
     const searchParams = new URLSearchParams(body);
     const data = Object.fromEntries(searchParams);
 
+    // check if the user has any existing cookies
     if (!request.headers.cookie) return sendRedirect();
+    // create an object with a 'jwt' property  and parse the users cookies into it
+    // parse into it the cookies and assign the cookie with the name jwt to the property 'jwt' in the newobject
+    // if the jwt cookie name doesnt exist then object would look like this :
+    // {jwt: undefined}
     const { jwt } = parse(request.headers.cookie);
+    // if jwt is a falsy then redirect
     if (!jwt) return sendRedirect();
 
     return verify(jwt, SECRET, (err, jwt) => {
