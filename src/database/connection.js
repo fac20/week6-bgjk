@@ -4,6 +4,8 @@ const dotenv = require("dotenv");
 // get variables from .env file
 dotenv.config();
 
+console.log(dotenv.config());
+
 //change the active database depending on if we are testing or not
 
 const options = {
@@ -12,8 +14,10 @@ const options = {
 };
 
 if (process.env.NODE_ENV === "test") {
-  connectionString = process.env.TEST_DATABASE_URL;
+  options.connectionString = process.env.TEST_DATABASE_URL;
 }
+
+
 
 // creat pool of connections to database
 const db = new pg.Pool(options);
