@@ -3,9 +3,12 @@ const path = require("path");
 const model = require("./model");
 const template = require("./template");
 const bcrypt = require("bcryptjs");
+const dotenv = require("dotenv");
 const { parse } = require("cookie");
 const { sign, verify } = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+
+dotenv.config();
+
 // -------Home Handler------------------
 function home(request, response) {
   model.getPosts().then(posts => {
@@ -42,42 +45,35 @@ function login(request, response) {
   let token;
   let body = "";
   request.on("data", chunk => (body += chunk));
-  request
-    .on("end", () => {
-      // take the users inputs and place them into a new object called data
-      const searchParams = new URLSearchParams(body);
-      const data = Object.fromEntries(searchParams);
-      // get user's hashed password and salt form password column of database
-      model
-        .getUser(data.username) //get user info from database
-        .then(user => {
-          // create json web token (jwt) from user data and secret key
-          const userDetails = { userId: user.id };
-          token = sign(userDetails, SECRET);
-          // compare new password with old via bcrypt.compare
-          return bcrypt.compare(data.password, user.password);
-        })
-        // return the writeHead with a cookie attached to show they're logged in.
-        .then(result => {
-          response.writeHead(302, {
-            location: "/",
-            "set-cookie": `jwt=${token}`,
-          });
-          response.end();
-        })
-        .catch(response => {
-          response.writeHead(401, {
-            "content-type": "text/html",
-          });
-          response.end(`<h1>Incorrect password or username</h1>`);
+  request.on("end", () => {
+    // take the users inputs and place them into a new object called data
+    const searchParams = new URLSearchParams(body);
+    const data = Object.fromEntries(searchParams);
+    // get user's hashed password and salt form password column of database
+    model
+      .getUser(data.username) //get user info from database
+      .then(user => {
+        // create json web token (jwt) from user data and secret key
+        const userDetails = { userId: user.id };
+        token = sign(userDetails, process.env.SECRET);
+        // compare new password with old via bcrypt.compare
+        return bcrypt.compare(data.password, user.password);
+      })
+      // return the writeHead with a cookie attached to show they're logged in.
+      .then(result => {
+        response.writeHead(302, {
+          location: "/",
+          "set-cookie": `jwt=${token}`,
         });
-    })
-    .catch(response => {
-      response.writeHead(400, {
-        "content-type": "text/html",
+        response.end();
+      })
+      .catch(error => {
+        response.writeHead(401, {
+          "content-type": "text/html",
+        });
+        response.end(`<h1>Incorrect password or username</h1>`);
       });
-      response.end(`<h1>Failed to send</h1>`);
-    });
+  });
 }
 
 // --------Create Post Handler---------------
@@ -99,7 +95,7 @@ function createPost(request, response) {
     // if jwt is a falsy then redirect
     if (!jwt) return sendRedirect();
 
-    return verify(jwt, SECRET, (err, jwt) => {
+    return verify(jwt, process.env.SECRET, (err, jwt) => {
       if (err) {
         return sendRedirect();
       } else {
@@ -131,9 +127,6 @@ function createUser(request, response) {
   request.on("end", () => {
     const searchParams = new URLSearchParams(body);
     const user = Object.fromEntries(searchParams);
-    //console.log(user);
-    const password = user.password;
-    //console.log(password);
     bcrypt
       .genSalt(10)
       .then(salt => bcrypt.hash(user.password, salt))
