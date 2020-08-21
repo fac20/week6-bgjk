@@ -11,13 +11,13 @@ Spill your beans a site for you to spill your toughts whether cute, angry or fun
 
 ## Table of content :table
 - [Installation :electric_plug:](#installation)
-- [User Stories :postal_horn::standing_person:](#User Stories)
-- [File structure and Wireframe :memo::pencil:](#File structure and Wireframe)
+- [User Stories :postal_horn::standing_person:](#UserStories)
+- [File structure and Wireframe :memo::pencil:](#Filestructure and Wireframe)
 - [Features :sparkles:](#Features)
 - [Tools :hammer_and_wrench:](#Tools)
 - [Team :superhero_woman: :superhero_woman: :superhero_man::superhero_man:](Team)
 
-## Installation 
+## Installation :electric_plug:
 
 To install and view this app on your local machine follow the below steps:
 ### Clone
@@ -38,7 +38,7 @@ Clone this repo into your desired folder on your local machine using ``` git clo
 Please message if you have any questions. 
 
 
-## User Stories 
+## User Stories :postal_horn::standing_person:
 ![ ](https://media.giphy.com/media/l3nWqzkMR5diFKkkU/giphy.gif)
 
 
@@ -65,7 +65,7 @@ Please message if you have any questions.
 - [ ] A user page that shows everything posted by a single user
 - [x] GitHub Actions CI setup to run your tests when you push
 
-## Features  
+## Features :sparkles:
 - The webapp contains 3 forms - Sign-up, login and post (each with their own handler functions)
 - A forum where users can post, read and delete* posts
 - All user data is stored in a remote heroku database - 
@@ -81,11 +81,11 @@ Please message if you have any questions.
 ![Website on mobile view horizontally](https://user-images.githubusercontent.com/59174800/90220307-dd743180-ddff-11ea-85e4-c2a39d4fb43e.png)
 
 
-## Tools
+## Tools :hammer_and_wrench:
 
 
 
-## Team
+## Team :superhero_woman: :superhero_woman: :superhero_man::superhero_man:
 - Josh (Scrum facilitator)
 - Azizi (Deployment)
 - Ephie (Design)
