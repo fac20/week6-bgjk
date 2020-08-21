@@ -1,6 +1,6 @@
 const db = require("./database/connection");
 
-/*------- Get Single User Detales -------*/
+/*------- Get Single User Details -------*/
 function getUser(input) {
   return db
     .query(
@@ -10,7 +10,7 @@ function getUser(input) {
     .then(result => result.rows);
 }
 
-/*------- Get All Users Detales -------*/
+/*------- Get All Users Details -------*/
 function getUsers() {
   return db.query("SELECT * FROM users").then(result => result.rows);
 }

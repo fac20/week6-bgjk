@@ -12,7 +12,8 @@ dotenv.config();
 // -------Home Handler------------------
 function home(request, response) {
   // check request header for cookies
-  // assign boolean value to loggedIn depend on cookie
+  // assign boolean value to loggedIn depending on cookie
+  // needs to be updated to check for althenticated cookie
   let loggedIn;
   if (request.headers.cookie) {
     loggedIn = true;
