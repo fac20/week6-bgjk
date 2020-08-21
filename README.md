@@ -11,8 +11,8 @@ Spill your beans a site for you to spill your toughts whether cute, angry or fun
 
 ## Table of content :table
 - [Installation :electric_plug:](#Installation)
-- [User Stories :postal_horn::standing_person:](#User Stories)
-- [File structure and Wireframe :memo::pencil:](#File structure and Wireframe)
+- [User Stories :postal_horn::standing_person:](#User-Stories)
+- [File structure and Wireframe :memo::pencil:](#File-structure-and-Wireframe)
 - [Features :sparkles:](#Features)
 - [Tools :hammer_and_wrench:](#Tools)
 - [Team :superhero_woman: :superhero_woman: :superhero_man::superhero_man:](Team)
@@ -65,14 +65,6 @@ Please message if you have any questions.
 - [ ] A user page that shows everything posted by a single user
 - [x] GitHub Actions CI setup to run your tests when you push
 
-## Features  
-- The webapp contains 3 forms - Sign-up, login and post (each with their own handler functions)
-- A forum where users can post, read and delete* posts
-- All user data is stored in a remote heroku database - 
-    - The database contains posts and users table.
-    - The users table contains users information which has a passwords column which is users hashed passwords using bcrypt
-- User log in authentication is done by checking if initially generated json web token exists in users cookies bar
-
 
 # File structure and Wireframe 
 
@@ -80,6 +72,14 @@ Please message if you have any questions.
 ![Website on mobile device vertically](https://user-images.githubusercontent.com/59174800/90220273-cb928e80-ddff-11ea-8056-6986e45b32cf.png)
 ![Website on mobile view horizontally](https://user-images.githubusercontent.com/59174800/90220307-dd743180-ddff-11ea-85e4-c2a39d4fb43e.png)
 
+
+## Features  
+- The webapp contains 3 forms - Sign-up, login and post (each with their own handler functions)
+- A forum where users can post, read and delete* posts
+- All user data is stored in a remote heroku database - 
+    - The database contains posts and users table.
+    - The users table contains users information which has a passwords column which is users hashed passwords using bcrypt
+- User log in authentication is done by checking if initially generated json web token exists in users cookies bar
 
 ## Tools
 
