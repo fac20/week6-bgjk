@@ -9,7 +9,7 @@ Spill your beans a site for you to spill your toughts whether cute, angry or fun
 - The app was built using nodejs and postgres
 
 
-## Table of content :table
+## Table of content :scroll:
 - [Installation :electric_plug:](#Installation)
 - [User Stories :postal_horn::standing_person:](#User-Stories)
 - [File structure and Wireframe :memo::pencil:](#File-structure-and-Wireframe)
