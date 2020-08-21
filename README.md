@@ -26,7 +26,7 @@ Clone this repo into your desired folder on your local machine using ``` git clo
 - Connect your local database with init.sql file 
    - run:
     - ``` psql ``` to enter into the postgres terminal
-    - ``` CREATE USER myuser SUPERUSER PASSWORD \'mypassword\'; ``` to create a dedicated psql local user for the application
+    - ``` CREATE USER myuser SUPERUSER PASSWORD 'mypassword'; ``` to create a dedicated psql local user for the application
    - ``` CREATE DATABASE test_database WITH OWNER myuser; ``` to create a database
     - ``` \connect src/database/init.sql ``` to connect psql to the test database file
     - ``` \i src/database/init.sql ``` to initialise 
