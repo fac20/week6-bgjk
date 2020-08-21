@@ -17,14 +17,28 @@ Spill your beans a site for you to spill your toughts whether cute, angry or fun
 - [Tools :hammer_and_wrench:](#Tools)
 - [Team :superhero_woman: :superhero_woman: :superhero_man::superhero_man:](Team)
 
-## Installation :electric_plug: 
+## Installation
 
 To install and view this app on your local machine follow the below steps:
 ### Clone
 Clone this repo into your desired folder on your local machine using ``` git clone https://github.com/fac20/week6-bgjk.git```
 ### Set-up
-- Connect your local database with init.sql file  
+- Connect your local database with init.sql file 
+   - run:
+    - ```psql``` to enter into the postgres terminal
+    - ``` CREATE USER myuser SUPERUSER PASSWORD 'mypassword';`` to create a dedicated psql local user for the application
+   - ```CREATE DATABASE test_database WITH OWNER myuser;``` to create a database
+    - ``` \connect src/database/init.sql``` to connect psql to the test database file
+    - ``` \i src/database/init.sql``` to initialise 
+    and run the sql file
+    - ``` \dt ``` to verify that you have actually initialised and run the db file
+    
 - Set up environment variables for the json secret key, database_url and test_database_url(which is the local database)
+  - Within a .env file create a the followig variables:
+    - DATABASE_URL - with the remote heroku database url
+    - TEST_DATABASE_URL(connection string) - utl in the format ```postgres://username:password@localhost:5432/database_name```
+    - SECRET- a secret key which will be used to create a jwt to be stored in cookies tab
+    
 - Run:
     - ``` npm install ``` to install all dependencies  
     - ``` npm run dev ``` to start the server using nodemon  
@@ -38,7 +52,7 @@ Clone this repo into your desired folder on your local machine using ``` git clo
 Please message if you have any questions. 
 
 
-## User Stories :postal_horn::standing_person: 
+## User Stories
 ![ ](https://media.giphy.com/media/l3nWqzkMR5diFKkkU/giphy.gif)
 
 
