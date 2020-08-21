@@ -1,7 +1,6 @@
 const db = require("./database/connection");
 
-// query to obtain a single user who's username and hashed password matches that from the form input.
-
+/*------- Get Single User Detales -------*/
 function getUser(input) {
   return db
     .query(
@@ -10,23 +9,34 @@ function getUser(input) {
     )
     .then(result => result.rows);
 }
-// A query to select all users from the users column
+
+/*------- Get All Users Detales -------*/
 function getUsers() {
   return db.query("SELECT * FROM users").then(result => result.rows);
 }
 
+/*------- Get Posts -------*/
 function getPosts() {
   return db
     .query(
       `
-    SELECT users.username, users.location, posts.text_content 
+    SELECT users.username, users.location, posts.id, posts.text_content 
     FROM users INNER JOIN posts
     ON users.id = posts.user_id`
     )
     .then(result => result.rows);
 }
 
-// Insert new user into user array
+/*------- Delete Posts -------*/
+function deletePost(postId, userId) {
+  return db.query(`
+  DELETE FROM posts 
+  WHERE id = '${postId}'
+  AND user_id = '${userId}'
+  `);
+}
+
+/*------- Insert new user into user table -------*/
 function createUser(data) {
   // User information taken from form placed in variable
   const userValues = [data.username, data.location, data.password];
@@ -39,7 +49,7 @@ function createUser(data) {
     .then(result => result.rows);
 }
 
-// Insert new post into posts table
+/*------- Insert new post into posts table -------*/
 function createPost(values) {
   return db.query(
     "INSERT INTO posts(user_id, text_content) VALUES($1, $2)",
@@ -47,15 +57,4 @@ function createPost(values) {
   );
 }
 
-//   const postValues = [
-//     //db.query(`SELECT id FROM users WHERE username = ${data.username}`),
-//     createUser(data),
-//     data.content,
-//   ];
-//   // Place the post text into the posts table along side the user_id foreign key
-//   return db.query(
-//     "INSERT INTO posts(user_id, text_content) VALUES($1, $2)",
-//     postValues
-//   );
-// }
 module.exports = { getUsers, createUser, createPost, getPosts, getUser };
