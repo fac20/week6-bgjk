@@ -31,11 +31,13 @@ function compilePosts(postsArray) {
       //Needs to be updated with new post content when db.connections found in model.js is finished
       return `
           <article class="post">
-              <p class="hidden">Post ID: ${post.id}</p>
-              <p>Written by: ${post.username}</p>
-              <p>${post.text_content}</p>
-              <form action='/delete' method='DELETE'>
-                <button type='submit' class="deleteButton" >DELETE POST</button>
+          <section class="textsect">
+              <p class="hidden" class="id">Post ID: ${post.id}</p>
+              <p class="written">Written by: ${post.username}</p>
+              <p class="posttext">${post.text_content}</p>
+              </section>
+              <form action='/delete' method='DELETE' >
+                <button type='submit' id="deleteButton" >DELETE POST</button>
               </form>
           </article>
   `;
@@ -45,6 +47,7 @@ function compilePosts(postsArray) {
 
 loginForm = `
 <form 
+class="form"
 method ='POST' action='/login'>
     <label for="username">Username :</label>
     <input type="text" id="username" name="username" required>
@@ -55,6 +58,7 @@ method ='POST' action='/login'>
 `;
 postForm = `
 <form 
+class="form"
 method ='POST' action ='/submit'>
     <label for="post">Post :</label>
     <input type="text" id="post" name="post" required>
