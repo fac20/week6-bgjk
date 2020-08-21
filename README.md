@@ -10,8 +10,8 @@ Spill your beans a site for you to spill your toughts whether cute, angry or fun
 
 
 ## Table of content :scroll:
-- [Installation :electric_plug:](#Installation_:electric_plug:)
-- [User Stories :postal_horn::standing_person:](#User-Stories_:postal_horn::standing_person:)
+- [Installation :electric_plug:](#Installation-:electric_plug:)
+- [User Stories :postal_horn::standing_person:](#User-Stories-:postal_horn::standing_person:)
 - [File structure and Wireframe :memo::pencil:](#File-structure-and-Wireframe)
 - [Features :sparkles:](#Features)
 - [Tools :hammer_and_wrench:](#Tools)
