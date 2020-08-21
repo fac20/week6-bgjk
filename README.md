@@ -11,12 +11,11 @@ Spill your beans a site for you to spill your toughts whether cute, angry or fun
 
 ## Table of content :table
 - [Installation :electric_plug:](#installation)
-- [User Stories :postal_horn: :standing_person:]()
-- [File structure and wireframe :memo:
-:pencil:]()
-- [Features :sparkles:]()
-- [Tools :hammer_and_wrench:]()
-- [Team 	:superhero_woman: :superhero_woman: :superhero_man::superhero_man:]()
+- [User Stories :postal_horn::standing_person:](#User Stories)
+- [File structure and Wireframe :memo::pencil:](#File structure and Wireframe)
+- [Features :sparkles:](#Features)
+- [Tools :hammer_and_wrench:](#Tools)
+- [Team :superhero_woman: :superhero_woman: :superhero_man::superhero_man:](Team)
 
 ## Installation 
 
@@ -39,11 +38,11 @@ Clone this repo into your desired folder on your local machine using ``` git clo
 Please message if you have any questions. 
 
 
-## User Stories
+## User Stories 
 ![ ](https://media.giphy.com/media/l3nWqzkMR5diFKkkU/giphy.gif)
 
 
-### Core
+### Core 
 - [x] As a user, I want to: submit information to your site for anyone to see
 - [x] As a user, I want to: come back to your site later and see what I posted is still there
 - [ ] As a user, I want to: be the only person allowed to delete my stuff
@@ -51,7 +50,7 @@ Please message if you have any questions.
 - [x] As a user I wa t to see an error message if I haven't signed up before trying to log in
 
 
-### Acceptance Criteria
+### Acceptance Criteria 
 - [x] Forms for users to sign up and log in
 - [x] A form for users to submit data only accessible to logged in users
 - [x] A page showing all the data
@@ -66,7 +65,7 @@ Please message if you have any questions.
 - [ ] A user page that shows everything posted by a single user
 - [x] GitHub Actions CI setup to run your tests when you push
 
-## Features 
+## Features  
 - The webapp contains 3 forms - Sign-up, login and post (each with their own handler functions)
 - A forum where users can post, read and delete* posts
 - All user data is stored in a remote heroku database - 
@@ -75,15 +74,7 @@ Please message if you have any questions.
 - User log in authentication is done by checking if initially generated json web token exists in users cookies bar
 
 
-
-If cloning the app to run it you need to enter the follwing to reach each page:
-- to run your code people should clone your repo, and then run npm install.
-- npm run dev 
-- you need access to the .env table to check the tables through psql. 
-- User can input data which can be submitted and then stored in our database
-
-
-# File structure and Wireframe
+# File structure and Wireframe 
 
 ![Website on desktop screeen](https://user-images.githubusercontent.com/59174800/90218905-d7c91c80-ddfc-11ea-9875-41f28094a162.png)
 ![Website on mobile device vertically](https://user-images.githubusercontent.com/59174800/90220273-cb928e80-ddff-11ea-8056-6986e45b32cf.png)
