@@ -21,17 +21,20 @@ Spill your beans a site for you to spill your toughts whether cute, angry or fun
 ## Installation 
 
 To install and view this app on your local machine follow the below steps:
-#### Clone
+### Clone
 Clone this repo into your desired folder on your local machine using ``` git clone https://github.com/fac20/week6-bgjk.git```
-#### Set-up
-Set up environment variables for the json secret key, database_url and test_database_url(which is the local database)
-Run:
-- ``` npm install ``` to install all dependencies  
-- ``` npm run dev ``` to start the server using nodemon  
-- ``` npm test ``` to run test locally
+### Set-up
+- Connect your local database with init.sql file  
+- Set up environment variables for the json secret key, database_url and test_database_url(which is the local database)
+- Run:
+    - ``` npm install ``` to install all dependencies  
+    - ``` npm run dev ``` to start the server using nodemon  
+    - ``` npm test ``` to run test locally
 
   <video controls="true" allowfullscreen="true">
-    <source src="./installation-guide.mp4" type="video/mp4">
+  <iframe src="./installation-guide.mp4" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
   </video>
 Please message if you have any questions. 
 
