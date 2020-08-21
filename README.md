@@ -25,11 +25,11 @@ Clone this repo into your desired folder on your local machine using ``` git clo
 ### Set-up
 - Connect your local database with init.sql file 
    - run:
-    - ```psql``` to enter into the postgres terminal
-    - ``` CREATE USER myuser SUPERUSER PASSWORD 'mypassword';`` to create a dedicated psql local user for the application
-   - ```CREATE DATABASE test_database WITH OWNER myuser;``` to create a database
-    - ``` \connect src/database/init.sql``` to connect psql to the test database file
-    - ``` \i src/database/init.sql``` to initialise 
+    - ``` psql ``` to enter into the postgres terminal
+    - ``` CREATE USER myuser SUPERUSER PASSWORD \'mypassword\'; ``` to create a dedicated psql local user for the application
+   - ``` CREATE DATABASE test_database WITH OWNER myuser; ``` to create a database
+    - ``` \connect src/database/init.sql ``` to connect psql to the test database file
+    - ``` \i src/database/init.sql ``` to initialise 
     and run the sql file
     - ``` \dt ``` to verify that you have actually initialised and run the db file
     
@@ -46,9 +46,8 @@ Clone this repo into your desired folder on your local machine using ``` git clo
 
   <video controls="true" allowfullscreen="true">
   <iframe src="./installation-guide.mp4" frameborder="0" allowfullscreen="true"> </iframe>
-</figure>
-
   </video>
+  
 Please message if you have any questions. 
 
 
@@ -86,7 +85,7 @@ Please message if you have any questions.
 ![Website on mobile device vertically](https://user-images.githubusercontent.com/59174800/90220273-cb928e80-ddff-11ea-8056-6986e45b32cf.png)
 ![Website on mobile view horizontally](https://user-images.githubusercontent.com/59174800/90220307-dd743180-ddff-11ea-85e4-c2a39d4fb43e.png)
 
-# view design structure and file connections via the link below:
+### View design structure and file connections via the link below:
 https://miro.com/app/board/o9J_knRn-DA=/
 
 
