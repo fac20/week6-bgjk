@@ -55,7 +55,7 @@ Please message if you have any questions.
 - [x] A form for users to submit data only accessible to logged in users
 - [x] A page showing all the data
 - [ ] A way for logged in users to delete their own data
-- [x]Semantic form elements with correctly associated labels
+- [x] Semantic form elements with correctly associated labels
 - [x] A Postgres database hosted on Heroku
 - [x] Tests for server routes and database access
 - [x] Not process user input as SQL commands
