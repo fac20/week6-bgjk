@@ -72,6 +72,9 @@ Please message if you have any questions.
 ![Website on mobile device vertically](https://user-images.githubusercontent.com/59174800/90220273-cb928e80-ddff-11ea-8056-6986e45b32cf.png)
 ![Website on mobile view horizontally](https://user-images.githubusercontent.com/59174800/90220307-dd743180-ddff-11ea-85e4-c2a39d4fb43e.png)
 
+# view design structure and file connections via the link below:
+https://miro.com/app/board/o9J_knRn-DA=/
+
 
 ## Features  
 - The webapp contains 3 forms - Sign-up, login and post (each with their own handler functions)
