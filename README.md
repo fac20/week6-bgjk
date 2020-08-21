@@ -10,14 +10,14 @@ Spill your beans a site for you to spill your toughts whether cute, angry or fun
 
 
 ## Table of content :scroll:
-- [Installation :electric_plug:](#Installation)
-- [User Stories :postal_horn::standing_person:](#User-Stories)
+- [Installation :electric_plug:](#Installation:electric_plug:)
+- [User Stories :postal_horn::standing_person:](#User-Stories:postal_horn::standing_person:)
 - [File structure and Wireframe :memo::pencil:](#File-structure-and-Wireframe)
 - [Features :sparkles:](#Features)
 - [Tools :hammer_and_wrench:](#Tools)
 - [Team :superhero_woman: :superhero_woman: :superhero_man::superhero_man:](Team)
 
-## Installation 
+## Installation :electric_plug: 
 
 To install and view this app on your local machine follow the below steps:
 ### Clone
@@ -38,7 +38,7 @@ Clone this repo into your desired folder on your local machine using ``` git clo
 Please message if you have any questions. 
 
 
-## User Stories 
+## User Stories :postal_horn::standing_person: 
 ![ ](https://media.giphy.com/media/l3nWqzkMR5diFKkkU/giphy.gif)
 
 
