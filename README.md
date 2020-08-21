@@ -33,7 +33,7 @@ Run:
   <video controls="true" allowfullscreen="true">
     <source src="./installation-guide.mp4" type="video/mp4">
   </video>
-- please message if you have any questions. 
+Please message if you have any questions. 
 
 
 ## User Stories
