@@ -11,8 +11,17 @@ dotenv.config();
 
 // -------Home Handler------------------
 function home(request, response) {
+  // check request header for cookies
+  // assign boolean value to loggedIn depend on cookie
+  let loggedIn;
+  if (request.headers.cookie) {
+    loggedIn = true;
+  } else {
+    loggedIn = false;
+  }
+  // check userId if logged in
   model.getPosts().then(posts => {
-    const html = template.compileHome(posts);
+    const html = template.compileHome(posts, loggedIn);
     response.writeHead(200, { "content-type": "text/html" });
     response.end(html);
   });
@@ -40,7 +49,7 @@ function missing(request, response) {
   response.end(`<h1>Oops, nothing for you over here</h1>`);
 }
 
-/* --------Login handler---------------- */
+// --------Login handler----------------
 function login(request, response) {
   let token;
   let body = "";
